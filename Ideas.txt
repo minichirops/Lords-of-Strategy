@@ -1,0 +1,3 @@
+We need a file for tracking notes, suggesting features, and managing our to-do list.
+
+Would probably be helpful if you had your notes on here. If you've got any code you plan on using in the project you could also go ahead and commit it. That way I can already look for places to improve and features to suggest. But I won't run around changing code unless I know what I'm doing; I'll probably create a separate branch for playing around with things that change the functionality of the code.
