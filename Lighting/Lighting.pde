@@ -84,3 +84,6 @@ void draw() {
   }
 updatePixels();
 }
+//int lx = constrain(lightX + x + dx * int(map(lightX-x/(lightsize),-width+1,width-1,-lightsize+1,lightsize-1)), 0, lightsize-1);
+//int ly = constrain(lightY + y + dy * int(map(-lightY+y/(lightsize),-height+1,height-1,-lightsize+1,lightsize-1)), 0, lightsize-1);      
+//int intensity = lightMap[lx + ly * lightsize];
