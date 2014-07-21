@@ -13,12 +13,16 @@ void setup() {
   //define the source images
   colorImage = loadImage("TCP.png");//this will be used as a size reference for the image
   heightImage = loadImage("THP.png");
-  int[] heightMap = new int[colorImage.width*colorImage.height]; //this will hold height values from heightImage
-  int[] refMap = new int[colorImage.width*colorImage.height]; //this will hold reflection values from heightImage
-  int[] transMap = new int[colorImage.width*colorImage.height]; //this will hold transparency values from heightImage
+  heightMap = new int[colorImage.width*colorImage.height]; //this will hold height values from heightImage
+  refMap = new int[colorImage.width*colorImage.height]; //this will hold reflection values from heightImage
+  transMap = new int[colorImage.width*colorImage.height]; //this will hold transparency values from heightImage
   //check for insufficently small screenspace (until the program does things offscreen)
-  if (screenSize<colorImage.height){screenSize = colorImage.height;}
-  if (screenSize<colorImage.width){screenSize = colorImage.width;}
+  if (screenSize<colorImage.height) {
+    screenSize = colorImage.height;
+  }
+  if (screenSize<colorImage.width) {
+    screenSize = colorImage.width;
+  }
   //define the screen space
   size(screenSize, screenSize);
   //populate the lightMap array with an inverted dome shape; the inverse will populate the shadowMap array.
@@ -60,30 +64,35 @@ void draw() {
   //prepare pixels array for accessing
   loadPixels();
   //SEEMS to work just fine outside the draw loop; might help fps, but the docs don't seem to agree
-  for (int y=1; y<colorImage.height-1; y++){
-    for(int x=1; x<colorImage.width-1; x++){
+  for (int y=1; y<colorImage.height-1; y++) {
+    for (int x=1; x<colorImage.width-1; x++) {
       //calculate dx and dy based on the absolute value of the average of the three pixel-comparisons necessary for x and y, respectively
       int dx = abs(((heightMap[(x-1) + y * colorImage.width] - heightMap[(x+1) + y * colorImage.width])+(heightMap[(x-1) + (y-1) * colorImage.width] - heightMap[(x+1) + (y-1) * colorImage.width])+(heightMap[(x-1) + (y+1) * colorImage.width] - heightMap[(x+1) + (y+1) * colorImage.width]))/3);
       int dy = abs(((heightMap[x + (y-1) * colorImage.height] - heightMap[x + (y+1) * colorImage.height])+(heightMap[(x-1) + (y-1) * colorImage.height] - heightMap[(x-1) + (y+1) * colorImage.height])+(heightMap[(x+1) + (y-1) * colorImage.height] - heightMap[(x+1) + (y+1) * colorImage.height]))/3);
-  //calculate whether to apply light or shadow mapping, or both
-  //calculate where to read the light intensity from the light map
-  //start with the current pixel position, offset by light position, further offset based on dx and dy times the mapped value of distance from the light source and the reflection value of the pixel
-  //ideally, this will increase gradient the further from the light source we go
-  //lastly, values are clamped between lightWidth/Height and 0
-  //look up light intensity from the light map and shadow map
-  //read pixel color from the color map
-  //modify intensity based on height map
-  //multiply light intensity by each color component and clamp to 0 to 255 range
-  color p = colorImage.get(x,y);
-  int r = min(255, (int)((red(p)) * intensity / 256.0));
-  int g = min(255, (int)((green(p)) * intensity / 256.0));
-  int b = min(255, (int)((blue(p)) * intensity / 256.0));
-  // output the calculated pixel
-  pixels[x + y * screenSize] = color(r, g, b); 
+      //calculate whether to apply light or shadow mapping, or both
+      //calculate where to read the light intensity from the light map
+      //start with the current pixel position, offset by light position, further offset based on dx and dy times the mapped value of distance from the light source and the reflection value of the pixel
+      //ideally, this will increase gradient the further from the light source we go
+      //lastly, values are clamped between lightWidth/Height and 0
+      //look up light intensity from the light map and shadow map
+      //read pixel color from the color map
+      //modify intensity based on height map
+      //multiply light intensity by each color component and clamp to 0 to 255 range
+      color p = colorImage.get(x, y);
+      float intensity = 128.0;
+      int r = min(255, (int)((red(p)) * intensity / 256.0));
+      int g = min(255, (int)((green(p)) * intensity / 256.0));
+      int b = min(255, (int)((blue(p)) * intensity / 256.0));
+      // output the calculated pixel
+      pixels[x + y * screenSize] = color(r, g, b);
     }
   }
-updatePixels();
+  updatePixels();
 }
+<<<<<<< HEAD
 //int lx = constrain(lightX + x + dx * int(map(lightX-x/(lightsize),-width+1,width-1,-lightsize+1,lightsize-1)), 0, lightsize-1);
 //int ly = constrain(lightY + y + dy * int(map(-lightY+y/(lightsize),-height+1,height-1,-lightsize+1,lightsize-1)), 0, lightsize-1);      
 //int intensity = lightMap[lx + ly * lightsize];
+=======
+
+>>>>>>> origin/master
