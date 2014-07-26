@@ -1,3 +1,25 @@
 We need a file for tracking notes, suggesting features, and managing our to-do list.
 
 Would probably be helpful if you had your notes on here. If you've got any code you plan on using in the project you could also go ahead and commit it. That way I can already look for places to improve and features to suggest. But I won't run around changing code unless I know what I'm doing; I'll probably create a separate branch for playing around with things that change the functionality of the code.
+
+Each player controls a lord.
+Each lord can influence characters to do his will. This influence, wit hthe influence of the players and gaia, decides what they do
+the actions of all characters close to the lord are seen by each player, for all that, the motivations ar never disclosed, and lords look just like characters
+
+When all of a lord's purposes are fulfilled, he wins
+
+a lord has all the usual attributes, with an additional dominion which is unique to him. This continas characters he has strongly infuence,d until they are more strongly influenced
+any who are subservent to the lord
+karma from the lord's actions, positive or otherwise
+reputation
+buildings, lands, countries, taxed revenue, and % based on his progress
+
+Dominion can be spent through
+deed; something a lesser person can't do, he can. Bonus on roll
+desires; something which otherwise couldn't exist does bonus to chance
+defiance; something he otherwise wouldn't do he does; resists lords influence
+decree; lasting, passive influenced by the lrd on characters
+
+purposes have a timefram, a set of objects, persons, playes, things, and states for each
+
+lords can die, but like all deaths there's a wimp out option, so it's hard to kill them. If they die, or another lord wins, they lose. Additionally if their dominion hits negative numbers they lose

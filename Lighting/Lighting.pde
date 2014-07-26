@@ -67,19 +67,22 @@ void draw() {
   for (int y=1; y<colorImage.height-1; y++) {
     for (int x=1; x<colorImage.width-1; x++) {
       //calculate dx and dy based on the absolute value of the average of the three pixel-comparisons necessary for x and y, respectively
-      int dx = abs(((heightMap[(x-1) + y * colorImage.width] - heightMap[(x+1) + y * colorImage.width])+(heightMap[(x-1) + (y-1) * colorImage.width] - heightMap[(x+1) + (y-1) * colorImage.width])+(heightMap[(x-1) + (y+1) * colorImage.width] - heightMap[(x+1) + (y+1) * colorImage.width]))/3);
-      int dy = abs(((heightMap[x + (y-1) * colorImage.height] - heightMap[x + (y+1) * colorImage.height])+(heightMap[(x-1) + (y-1) * colorImage.height] - heightMap[(x-1) + (y+1) * colorImage.height])+(heightMap[(x+1) + (y-1) * colorImage.height] - heightMap[(x+1) + (y+1) * colorImage.height]))/3);
+      int dx = (heightMap[(x-1) + y * colorImage.width] - heightMap[(x+1) + y * colorImage.width]+(heightMap[(x-1) + (y-1) * colorImage.width] - heightMap[(x+1) + (y-1) * colorImage.width])+(heightMap[(x-1) + (y+1) * colorImage.width] - heightMap[(x+1) + (y+1) * colorImage.width]))/3;
+      int dy = (heightMap[x + (y-1) * colorImage.height] - heightMap[x + (y+1) * colorImage.height]+(heightMap[(x-1) + (y-1) * colorImage.height] - heightMap[(x-1) + (y+1) * colorImage.height])+(heightMap[(x+1) + (y-1) * colorImage.height] - heightMap[(x+1) + (y+1) * colorImage.height]))/3;
       //calculate whether to apply light or shadow mapping, or both
       //calculate where to read the light intensity from the light map
       //start with the current pixel position, offset by light position, further offset based on dx and dy times the mapped value of distance from the light source and the reflection value of the pixel
       //ideally, this will increase gradient the further from the light source we go
       //lastly, values are clamped between lightWidth/Height and 0
       //look up light intensity from the light map and shadow map
+      int lx = int(constrain(lightX + x + dx * 2,0, lightSize-1));
+      int ly = int(constrain(lightY + y + dy * 2,0, lightSize-1));
+      int intensity = lightMap[lx + ly * lightSize];
       //read pixel color from the color map
       //modify intensity based on height map
       //multiply light intensity by each color component and clamp to 0 to 255 range
       color p = colorImage.get(x, y);
-      float intensity = 128.0;
+      //float intensity = 128.0;
       int r = min(255, (int)((red(p)) * intensity / 256.0));
       int g = min(255, (int)((green(p)) * intensity / 256.0));
       int b = min(255, (int)((blue(p)) * intensity / 256.0));
@@ -89,10 +92,8 @@ void draw() {
   }
   updatePixels();
 }
-<<<<<<< HEAD
+
 //int lx = constrain(lightX + x + dx * int(map(lightX-x/(lightsize),-width+1,width-1,-lightsize+1,lightsize-1)), 0, lightsize-1);
 //int ly = constrain(lightY + y + dy * int(map(-lightY+y/(lightsize),-height+1,height-1,-lightsize+1,lightsize-1)), 0, lightsize-1);      
 //int intensity = lightMap[lx + ly * lightsize];
-=======
 
->>>>>>> origin/master

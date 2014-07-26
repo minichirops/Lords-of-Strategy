@@ -3,10 +3,9 @@
 /**
  * 2D Bump Mapping of the OSAA logo
  *
- * Created by Rene Hangstrup Møller
+ * Original created by Rene Hangstrup Møller
  *
-+ * Warming up for the Processing workshop at Open Space Aarhus
- * http://osaa.dk/wiki/index.php/Processingworkshops
+ * Tweaked by Jonathan Adams and Joshua Hard
  */
  
 PImage colorImg; // color map for the logo
@@ -99,7 +98,7 @@ void draw() {
   // copy pixel[] to screen buffer
   updatePixels();
 }
-
+//scroll in and out to change the gradient value variance relative to the mouse
 void mouseWheel(MouseEvent event) {
   LOD_FADE += int(event.getAmount());
   LOD_FADE = max(LOD_FADE, 3);
